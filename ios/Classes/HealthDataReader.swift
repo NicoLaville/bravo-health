@@ -275,6 +275,9 @@ class HealthDataReader {
                         "total_energy_burned": sample.totalEnergyBurned != nil
                             ? Int(sample.totalEnergyBurned!.doubleValue(for: HKUnit.kilocalorie()))
                             : 0,
+                        // BRAVO : dénivelé positif écrit par la montre (sorties en extérieur), en mètres
+                        "totalElevationAscended": (sample.metadata?[HKMetadataKeyElevationAscended] as? HKQuantity)?
+                            .doubleValue(for: HKUnit.meter()),
                     ]
                 }
 
@@ -564,6 +567,9 @@ class HealthDataReader {
                         "total_energy_burned": sample.totalEnergyBurned != nil
                             ? Int(sample.totalEnergyBurned!.doubleValue(for: HKUnit.kilocalorie()))
                             : 0,
+                        // BRAVO : dénivelé positif écrit par la montre (sorties en extérieur), en mètres
+                        "totalElevationAscended": (sample.metadata?[HKMetadataKeyElevationAscended] as? HKQuantity)?
+                            .doubleValue(for: HKUnit.meter()),
                     ]
                 }
 

@@ -74,6 +74,7 @@ enum HealthDataType {
   DISTANCE_CYCLING,
   FLIGHTS_CLIMBED,
   DISTANCE_DELTA,
+  ELEVATION_GAINED,
   WALKING_SPEED,
   SPEED,
   MINDFULNESS,
@@ -246,6 +247,7 @@ const List<HealthDataType> dataTypeKeysAndroid = [
   HealthDataType.STEPS,
   HealthDataType.WEIGHT,
   HealthDataType.DISTANCE_DELTA,
+  HealthDataType.ELEVATION_GAINED,
   HealthDataType.SPEED,
   HealthDataType.SLEEP_ASLEEP,
   HealthDataType.SLEEP_AWAKE_IN_BED,
@@ -345,6 +347,7 @@ const Map<HealthDataType, HealthDataUnit> dataTypeToUnit = {
   HealthDataType.DISTANCE_CYCLING: HealthDataUnit.METER,
   HealthDataType.FLIGHTS_CLIMBED: HealthDataUnit.COUNT,
   HealthDataType.DISTANCE_DELTA: HealthDataUnit.METER,
+  HealthDataType.ELEVATION_GAINED: HealthDataUnit.METER,
   HealthDataType.WALKING_SPEED: HealthDataUnit.METER_PER_SECOND,
   HealthDataType.SPEED: HealthDataUnit.METER_PER_SECOND,
 

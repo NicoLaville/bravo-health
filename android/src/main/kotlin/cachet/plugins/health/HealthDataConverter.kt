@@ -86,6 +86,7 @@ class HealthDataConverter {
             is HydrationRecord -> listOf(createIntervalRecord(metadata, record.startTime, record.endTime, record.volume.inLiters))
             is TotalCaloriesBurnedRecord -> listOf(createIntervalRecord(metadata, record.startTime, record.endTime, record.energy.inKilocalories))
             is FloorsClimbedRecord -> listOf(createIntervalRecord(metadata, record.startTime, record.endTime, record.floors))
+            is ElevationGainedRecord -> listOf(createIntervalRecord(metadata, record.startTime, record.endTime, record.elevation.inMeters))
             is ActivityIntensityRecord -> listOf(
                 createIntervalRecord(
                     metadata,

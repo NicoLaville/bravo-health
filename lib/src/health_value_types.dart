@@ -136,6 +136,12 @@ class WorkoutHealthValue extends HealthValue {
   /// Might not be available for all workouts.
   HealthDataUnit? totalStepsUnit;
 
+  /// BRAVO : the total elevation ascended (positive elevation gain) during the workout, in meters.
+  /// iOS : HKMetadataKeyElevationAscended of the HKWorkout (written by the Apple Watch for outdoor workouts).
+  /// Android : sum of the ElevationGainedRecord of the session's own app over the session (needs ELEVATION_GAINED).
+  /// Null when not available.
+  int? totalElevationAscended;
+
   WorkoutHealthValue({
     required this.workoutActivityType,
     this.totalEnergyBurned,
@@ -144,6 +150,7 @@ class WorkoutHealthValue extends HealthValue {
     this.totalDistanceUnit,
     this.totalSteps,
     this.totalStepsUnit,
+    this.totalElevationAscended,
   });
 
   /// Create a [WorkoutHealthValue] based on a health data point from native data format.
@@ -164,6 +171,9 @@ class WorkoutHealthValue extends HealthValue {
     totalStepsUnit: dataPoint['totalStepsUnit'] != null
         ? HealthDataUnit.values.firstWhere((element) => element.name == dataPoint['totalStepsUnit'])
         : null,
+    totalElevationAscended: dataPoint['totalElevationAscended'] != null
+        ? (dataPoint['totalElevationAscended'] as num).round()
+        : null,
   );
 
   @override
@@ -181,7 +191,8 @@ class WorkoutHealthValue extends HealthValue {
            totalDistance: $totalDistance,
            totalDistanceUnit: ${totalDistanceUnit?.name}
            totalSteps: $totalSteps,
-           totalStepsUnit: ${totalStepsUnit?.name}""";
+           totalStepsUnit: ${totalStepsUnit?.name},
+           totalElevationAscended: $totalElevationAscended""";
 
   @override
   bool operator ==(Object other) =>
@@ -192,7 +203,8 @@ class WorkoutHealthValue extends HealthValue {
       totalDistance == other.totalDistance &&
       totalDistanceUnit == other.totalDistanceUnit &&
       totalSteps == other.totalSteps &&
-      totalStepsUnit == other.totalStepsUnit;
+      totalStepsUnit == other.totalStepsUnit &&
+      totalElevationAscended == other.totalElevationAscended;
 
   @override
   int get hashCode => Object.hash(
@@ -203,6 +215,7 @@ class WorkoutHealthValue extends HealthValue {
     totalDistanceUnit,
     totalSteps,
     totalStepsUnit,
+    totalElevationAscended,
   );
 }
 

@@ -640,6 +640,29 @@ class HealthDataReader(
                 totalSteps += stepRec.count
             }
 
+            // BRAVO : dénivelé positif de la séance, écrit par l'appli de la séance elle-même (une montre ET un
+            // téléphone qui l'écriraient tous les deux le doubleraient) ; rien si l'autorisation manque.
+            var totalElevationAscended: Double? = null
+            try {
+                val elevationRequest = healthConnectClient.readRecords(
+                    ReadRecordsRequest(
+                        recordType = ElevationGainedRecord::class,
+                        timeRangeFilter = TimeRangeFilter.between(
+                            record.startTime,
+                            record.endTime,
+                        ),
+                        dataOriginFilter = setOf(record.metadata.dataOrigin),
+                    ),
+                )
+                var somme = 0.0
+                for (elevationRec in elevationRequest.records) {
+                    somme += elevationRec.elevation.inMeters
+                }
+                if (somme > 0.0) totalElevationAscended = somme
+            } catch (e: Exception) {
+                totalElevationAscended = null
+            }
+
             // Add final datapoint
             healthConnectData.add(
                 mapOf<String, Any?>(
@@ -655,6 +678,7 @@ class HealthDataReader(
                     "totalEnergyBurnedUnit" to "KILOCALORIE",
                     "totalSteps" to if (totalSteps == 0.0) null else totalSteps,
                     "totalStepsUnit" to "COUNT",
+                    "totalElevationAscended" to totalElevationAscended,
                     "unit" to "MINUTES",
                     "date_from" to record.startTime.toEpochMilli(),
                     "date_to" to record.endTime.toEpochMilli(),

@@ -1,3 +1,9 @@
+## 13.3.1+bravo.1 (BRAVO, 15/11/2026)
+
+* `WorkoutHealthValue.totalElevationAscended` (meters) : iOS, `HKMetadataKeyElevationAscended` of the `HKWorkout` ;
+  Android, sum of the session's own `ElevationGainedRecord` (new `HealthDataType.ELEVATION_GAINED`, Android only,
+  to request `READ_ELEVATION_GAINED`). Null when not available.
+
 ## 13.3.1
 
 * iOS: Fix issues with app crashing on iOS 15

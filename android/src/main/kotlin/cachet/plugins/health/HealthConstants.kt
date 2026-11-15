@@ -26,6 +26,7 @@ object HealthConstants {
     const val BODY_WATER_MASS = "BODY_WATER_MASS"
     const val DISTANCE_DELTA = "DISTANCE_DELTA"
     const val FLIGHTS_CLIMBED = "FLIGHTS_CLIMBED"
+    const val ELEVATION_GAINED = "ELEVATION_GAINED"
     const val HEART_RATE = "HEART_RATE"
     const val HEART_RATE_VARIABILITY_RMSSD = "HEART_RATE_VARIABILITY_RMSSD"
     const val HEIGHT = "HEIGHT"
@@ -102,6 +103,7 @@ object HealthConstants {
         RESTING_HEART_RATE to RestingHeartRateRecord::class,
         BASAL_ENERGY_BURNED to BasalMetabolicRateRecord::class,
         FLIGHTS_CLIMBED to FloorsClimbedRecord::class,
+        ELEVATION_GAINED to ElevationGainedRecord::class,
         RESPIRATORY_RATE to RespiratoryRateRecord::class,
         TOTAL_CALORIES_BURNED to TotalCaloriesBurnedRecord::class,
         MENSTRUATION_FLOW to MenstruationFlowRecord::class,

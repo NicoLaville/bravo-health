@@ -174,6 +174,7 @@ class HealthDataChanges(
         is RestingHeartRateRecord -> listOf(HealthConstants.RESTING_HEART_RATE)
         is BasalMetabolicRateRecord -> listOf(HealthConstants.BASAL_ENERGY_BURNED)
         is FloorsClimbedRecord -> listOf(HealthConstants.FLIGHTS_CLIMBED)
+        is ElevationGainedRecord -> listOf(HealthConstants.ELEVATION_GAINED)
         is RespiratoryRateRecord -> listOf(HealthConstants.RESPIRATORY_RATE)
         is TotalCaloriesBurnedRecord -> listOf(HealthConstants.TOTAL_CALORIES_BURNED)
         is MenstruationFlowRecord -> listOf(HealthConstants.MENSTRUATION_FLOW)
